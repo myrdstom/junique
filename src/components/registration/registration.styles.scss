@@ -1,115 +1,148 @@
-* body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', Helvetica, sans-serif;
-  background: #33302f;
-}
-
-.wrapper {
+.main {
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #258ea6;
-}
-
-.form-wrapper {
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 40px;
-  border-radius: 10px;
-  box-shadow: 0px 10px 50px #555;
   background-color: #ffffff;
 }
 
 form {
-  width: 100%;
+  width: 75%;
   display: flex;
-  flex-wrap: wrap;
-}
-
-h1 {
-  text-align: center;
-  width: 100%;
-  color: #111;
-  font-weight: lighter;
-  font-family: 'Poppins', Helvetica, sans-serif;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 5%;
+  margin: 0 auto;
 }
 
 label {
   font-size: 0.8em;
   margin-bottom: 0.25em;
-  color: #222;
-  font-weight: lighter;
+  color: #222222;
+  line-height: 20px;
 }
 
 input {
   padding: 10px 10px;
-  border-radius: 5px;
   outline: none;
   border: 1px solid #cfcfcf;
+  background-color: #f1f1eb;
+  line-height: 20px;
 }
 
 input::placeholder {
   font-size: 1.2em;
-  font-weight: lighter;
-  color: #999;
+  font-weight: normal;
+  color: #aaaaaa;
+}
+input:focus{
+  background-color: #ffffff;
 }
 
-input.error {
-  border: 1px solid red;
-}
-
-.errorMessage {
-  color: red;
-  font-size: 0.6em;
-  display: relative;
-}
-
-.vorname {
-  margin-right: 1%;
-}
-
-.lastName {
-  margin-left: 1%;
-}
-
-.grid {
+/* Form Data */
+.grid__vorname {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-bottom: 1rem;
-}
-
-.email {
-  display: grid;
-  grid-template-columns: 23% 23% 23% 23%;
-  justify-content: space-between;
+  grid-template-rows: 1fr;
   align-items: center;
-  column-gap: 2%;
   margin-bottom: 1rem;
 }
 
-.email input{
-  width: 40%;
-}
-.password {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
+.grid__nachname {
+  display: grid;
+  grid-template-rows: 1fr;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.vorname,
-.lastName {
-  width: 49%;
+.grid__geburtsdatum {
+  display: grid;
+  grid-template-rows: 1fr;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.password {
-  width: 100%;
+.grid__geburtsdatum__col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5px, 1fr));
+  grid-gap: 0.5em;
 }
 
+.grid__strabe {
+  display: grid;
+  grid-template-rows: 1fr;
+  margin-bottom: 1rem;
+}
+
+.grid__strabe__labels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5px, 2fr));
+  grid-gap: 1rem;
+}
+
+.grid__strabe__labels label:nth-child(1) {
+  grid-column: span 2;
+}
+
+.grid__strabe__labels label:nth-child(2) {
+  grid-column: span 1;
+}
+
+.grid__strabe__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5px, 2fr));
+  grid-gap: 0.5em;
+}
+
+.grid__strabe__fields input:nth-child(1) {
+  grid-column: span 2;
+}
+
+.grid__strabe__fields input:nth-child(2) {
+  grid-column: span 1;
+}
+
+.grid__plz {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.grid__plz__labels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5px, 2fr));
+  grid-gap: 1rem;
+}
+
+.grid__plz__labels label:nth-child(1) {
+  grid-column: span 1;
+}
+
+.grid__plz__labels label:nth-child(2) {
+  grid-column: span 2;
+}
+
+.grid__plz__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5px, 2fr));
+  grid-gap: 0.5em;
+}
+
+.grid__plz__fields input:nth-child(1) {
+  grid-column: span 1;
+}
+
+.grid__plz__fields input:nth-child(2) {
+  grid-column: span 2;
+}
+
+.grid__errorMessage {
+  color: red;
+  font-size: 0.8em;
+  margin: 1em 0;
+}
+
+/* Button */
 .createAccount {
   width: 100%;
   display: flex;
@@ -123,7 +156,7 @@ input.error {
   border: 2px solid #fff;
   width: 100%;
   margin-top: 1em;
-  padding: 8px 0px;
+  padding: 8px 0;
   font-size: 1em;
   font-weight: lighter;
   letter-spacing: 1px;
@@ -137,24 +170,21 @@ input.error {
   cursor: pointer;
 }
 
-.createAccount small {
-  color: #999;
-  font-weight: lighter;
-}
-
 /* check box */
-.check-grid {
+.grid-checkbox {
   display: grid;
   grid-template-columns: 33% 33% 33%;
+  align-items: center;
   margin-bottom: 1rem;
 }
-.container {
+.form__container {
   display: block;
   position: relative;
   padding-left: 35px;
+  padding-top: 5px;
   margin-bottom: 12px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.8em;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -162,55 +192,137 @@ input.error {
 }
 
 /* Hide the browser's default radio button */
-.container input {
+.form__container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
 /* Create a custom radio button */
-.checkmark {
+.form__checkMark {
   position: absolute;
-  top: -5px;
+  top: 0;
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: #eee;
+  background-color: #f1f1eb;
   border-radius: 50%;
+  border: 1px solid #a7a7a7;
 }
 
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
+
+.form__container input:checked ~ .form__checkMark {
+  background-color: #f1f1eb;
 }
 
-/* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
+.form__checkMark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
+.form__container input:checked ~ .form__checkMark:after {
   display: block;
 }
 
-/* Style the indicator (dot/circle) */
-.container .checkmark:after {
-  top: 7px;
-  left: 7px;
-  width: 6px;
-  height: 6px;
+.form__container .form__checkMark:after {
+  top: 6px;
+  left: 6px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: white;
+  background: #222222;
+  content: "";
 }
 
-.container{
+.form__container {
   font-size: 0.8em;
+}
+
+@media (min-width: 768px) {
+  form {
+    width: 400px;
+  }
+  .grid-checkbox {
+    grid-template-columns: 25% 37% 37%;
+  }
+
+  .grid__vorname {
+    grid-template-columns: 1fr 3fr;
+  }
+  .grid__nachname {
+    grid-template-columns: 1fr 3fr;
+  }
+  .grid__geburtsdatum {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .grid__strabe {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+  .grid__strabe__labels label span {
+    display: none;
+  }
+
+  .grid__strabe__labels label:nth-child(1):before {
+    content: "Straße/Nr.*";
+    position: relative;
+    top: 0.9em;
+  }
+  .grid__strabe__labels label:nth-child(2) {
+    display: none;
+  }
+
+  .grid__plz {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+  .grid__plz__labels label span {
+    display: none;
+  }
+
+  .grid__plz__labels label:nth-child(1):before {
+    content: "PLZ/Ort*";
+    position: relative;
+    top: 0.9em;
+  }
+  .grid__plz__labels label:nth-child(2) {
+    display: none;
+  }
+
+  .grid__errorMessage {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .grid__geburtsdatum__col {
+    grid-gap: 1em;
+  }
+
+  .grid__strabe__fields {
+    grid-gap: 1em;
+  }
+  .grid__plz__fields {
+    grid-gap: 1em;
+  }
+}
+
+@media (min-width: 992px) {
+  form {
+    width: 500px;
+  }
+  .grid__geburtsdatum__col {
+    grid-gap: 1.5em;
+  }
+
+  .grid__strabe__fields {
+    grid-gap: 1.5em;
+  }
+  .grid__plz__fields {
+    grid-gap: 1.5em;
+  }
+}
+
+@media (min-width: 1200px) {
 }
