@@ -1,70 +1,159 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Register from "./register";
-import { useFormik } from "formik";
-import './registration.styles.scss';
-import * as Yup from "yup";
+import "./registration.styles.scss";
+import {initialErrorState} from "../../utils/errorState";
 
 const RegisterView = () => {
-  const formik = useFormik({
-    initialValues: {
-      checked: false,
-      vorname: "",
-      nachname: "",
-      tag: "",
-      monat: "",
-      jahr: "",
-      strabe: "",
-      nr: "",
-      plz: "",
-      ort: "",
-    },
-    validationSchema: Yup.object({
-      vorname: Yup.string().required("Vorname erforderlich"),
-      nachname: Yup.string().required("Nachname erforderlich"),
-      tag: Yup.number().typeError('geburtsdatum akzeptiert nur zahlen').required("ungültiges Geburtsdatum"),
-      monat: Yup.number().typeError('geburtsdatum akzeptiert nur zahlen').required("ungültiges Geburtsdatum"),
-      jahr: Yup.number().typeError('geburtsdatum akzeptiert nur zahlen').required("ungültiges Geburtsdatum"),
-      strabe: Yup.string().required("straße erforderlich"),
-      nr: Yup.string().required("straße erforderlich"),
-      plz: Yup.string().required("postleitzahl erforderlich"),
-      ort: Yup.string().required("postleitzahl erforderlich"),
-    }),
-    onSubmit: (values) => {
-      const {
-        vorname,
-        nachname,
-        tag,
-        monat,
-        jahr,
-      } = values;
-      return {
-        vorname,
-        nachname,
-        tag,
-        monat,
-        jahr,
-      };
-    },
+  const [user, setUser] = useState({
+    checked: false,
+    vorname: "",
+    nachname: "",
+    tag: "",
+    monat: "",
+    jahr: "",
+    strabe: "",
+    nr: "",
+    plz: "",
+    ort: "",
   });
 
+  const [strabeLabel, setStrabeLabel] = useState("");
+  const [nrLabel, setNrLabel] = useState("");
+  const [plzLabel, setPLZLabel] = useState("");
+  const [ortLabel, setOrtLabel] = useState("");
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    if (mql.matches) {
+      setStrabeLabel("Straße.*");
+      setNrLabel("Nr.*");
+      setPLZLabel("PLZ*");
+      setOrtLabel("Ort*");
+    } else {
+      setStrabeLabel("Straße/Nr.*");
+      setNrLabel("");
+      setPLZLabel("PLZ/Ort*");
+      setOrtLabel("");
+    }
+
+    mql.addEventListener("change", (e) => {
+      if (e.matches) {
+        setStrabeLabel("Straße.*");
+        setNrLabel("Nr.*");
+        setPLZLabel("PLZ*");
+        setOrtLabel("Ort*");
+      } else {
+        setStrabeLabel("Straße/Nr.*");
+        setNrLabel("");
+        setPLZLabel("PLZ/Ort*");
+        setOrtLabel("");
+      }
+    });
+  }, []);
+
+  const [errors, setErrors] = useState({
+    vornameError: "",
+    nachnameError: "",
+    geburtsdatumError: "",
+    strabeError: "",
+    plzError: "",
+  });
+
+  const {
+    checked,
+    vorname,
+    nachname,
+    tag,
+    monat,
+    jahr,
+    strabe,
+    nr,
+    plz,
+    ort,
+  } = user;
+
+  const validate = () => {
+    let vornameError = "";
+    let nachnameError = "";
+    let geburtsdatumError = "";
+    let strabeError = "";
+    let plzError = "";
+    if (!vorname) {
+      vornameError = "Vorname erforderlich";
+    }
+    if (!nachname) {
+      nachnameError = "Nachname erforderlich";
+    }
+    if (!tag) {
+      geburtsdatumError = "ungültiges Geburtsdatum";
+    }
+    if (!strabe) {
+      strabeError = "straße erforderlich";
+    }
+    if (!plz) {
+      plzError = "postleitzahl erforderlich";
+    }
+    if (!monat) {
+      geburtsdatumError = "ungültiges Geburtsdatum";
+    }
+
+    if (
+      vorname.length < 2 ||
+      nachname.length < 2 ||
+      tag.length < 1 ||
+      strabe.length < 2 ||
+      plz.length < 2 ||
+      monat.length < 2
+    ) {
+      setErrors({
+        ...errors,
+        vornameError,
+        nachnameError,
+        strabeError,
+        geburtsdatumError,
+        plzError,
+      });
+      return false;
+    }
+
+    return true;
+  };
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setUser({
+      ...user,
+      [e.target.name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isValid = validate();
+    if (isValid) {
+      setErrors(initialErrorState);
+    }
+  };
+
   return (
-    <div>
+    <div className="main">
       <Register
-          checked={formik.values.checked}
-        vorname={formik.values.vorname}
-        onChange={formik.handleChange}
-        nachname={formik.values.nachname}
-        tag={formik.values.tag}
-        monat={formik.values.monat}
-        jahr={formik.values.jahr}
-        strabe={formik.values.strabe}
-        nr={formik.values.nr}
-        plz={formik.values.plz}
-        ort={formik.values.ort}
-        onSubmit={formik.handleSubmit}
-        onBlur={formik.handleBlur}
-        errors={formik.errors}
-        touched={formik.touched}
+        checked={checked}
+        vorname={vorname}
+        onChange={handleChange}
+        nachname={nachname}
+        tag={tag}
+        monat={monat}
+        jahr={jahr}
+        strabe={strabe}
+        nr={nr}
+        plz={plz}
+        ort={ort}
+        onSubmit={handleSubmit}
+        errors={errors}
+        strabeLabel={strabeLabel}
+        nrLabel={nrLabel}
+        plzLabel={plzLabel}
+        ortLabel={ortLabel}
       />
     </div>
   );
