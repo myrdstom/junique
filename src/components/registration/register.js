@@ -15,7 +15,6 @@ const Register = (props) => {
     onSubmit,
     errors,
     onBlur,
-    touched,
   } = props;
 
   return (
@@ -46,11 +45,11 @@ const Register = (props) => {
               placeholder="Vorname"
             />
           </div>
-          {touched.vorname && errors.vorname ? (
+          {errors.vornameError ? (
               <div className="grid__errorMessage">
                 {" "}
                 <span />{" "}
-                <span>{errors.vorname}</span>
+                <span>{errors.vornameError}</span>
               </div>
           ) : null}
           <div className="grid__nachname">
@@ -64,11 +63,11 @@ const Register = (props) => {
               placeholder="Nachname"
             />
           </div>
-          {touched.nachname && errors.nachname ? (
+          {errors.nachnameError ? (
               <div className="grid__errorMessage">
                 {" "}
                 <span />{" "}
-                <span>{errors.nachname}</span>
+                <span>{errors.nachnameError}</span>
               </div>
           ) : null}
           <div className="grid__geburtsdatum">
@@ -100,11 +99,11 @@ const Register = (props) => {
               />
             </div>
           </div>
-          {touched.tag || touched.monat || touched.jahr ? (
+          {errors.geburtsdatumError ? (
               <div className="grid__errorMessage">
                 {" "}
                 <span />{" "}
-                <span>{errors.tag || errors.monat || errors.jahr}</span>
+                <span>{errors.geburtsdatumError}</span>
               </div>
           ) : null}
           <div className="grid__strabe">
@@ -133,11 +132,11 @@ const Register = (props) => {
               />
             </div>
           </div>
-          {touched.strabe || touched.nr? (
+          {errors.strabeError? (
               <div className="grid__errorMessage">
                 {" "}
                 <span />{" "}
-                <span>{errors.strabe || errors.nr}</span>
+                <span>{errors.strabeError}</span>
               </div>
           ) : null}
           <div className="grid__plz">
@@ -166,11 +165,11 @@ const Register = (props) => {
               />
             </div>
           </div>
-          {touched.plz || touched.ort? (
+          {errors.plzError ? (
               <div className="grid__errorMessage">
                 {" "}
                 <span />{" "}
-                <span>{errors.plz || errors.ort}</span>
+                <span>{errors.plzError}</span>
               </div>
           ) : null}
         </div>
