@@ -8,8 +8,10 @@ Simple form styling as per the Junique requirements
 - run the application with `yarn start` or `npm start`
 
 
-## Point of note
+## Points of note
 
-Have not exhaustively catered for state and validation as this was outside the scope challenge. 
+- Have not exhaustively catered for state and validation as this was outside the scope challenge. 
 Many input fields are not validated
 
+- implemented dynamic change of some labels based on screen size. USed a native implementation but libraries like react-media
+can be utilized to further improve code quality
