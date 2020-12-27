@@ -23,16 +23,16 @@ const Register = (props) => {
 
   return (
     <form className="form" noValidate onSubmit={onSubmit}>
-      <div className="grid grid-checkbox">
+      <div className="grid-checkbox">
         <label className="form__label ">Anrede* </label>
         <label className="form__container">
           Herr
-          <input type="radio" name="radio" />
+          <input className="form__radio" type="radio" name="radio" />
           <span className="form__checkMark" />
         </label>
         <label className="form__container">
           Frau
-          <input type="radio" name="radio" />
+          <input className="form__radio" type="radio" name="radio" />
           <span className="form__checkMark" />
         </label>
       </div>

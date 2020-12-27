@@ -13,5 +13,7 @@ Simple form styling as per the Junique requirements
 - Have not exhaustively catered for state and validation as this was outside the scope challenge. 
 Many input fields are not validated
 
-- implemented dynamic change of some labels based on screen size. USed a native implementation but libraries like react-media
+- implemented dynamic change of some labels based on screen size. Used a native implementation but libraries like react-media
 can be utilized to further improve code quality
+
+- I do have extra spans in the html in regards to a query fo yours. The reason was specifically to easier manage grids
