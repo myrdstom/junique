@@ -174,9 +174,9 @@ const Register = (props) => {
           <span /> <span>{errors.plzError}</span>
         </div>
       ) : null}
-      <div className="createAccount">
-        <span className="button_createAccount" />
-        <button type="submit">Create Account</button>
+      <div className="form__button">
+        <span className="form__span" />
+        <button className="form__submit" type="submit">Create Account</button>
       </div>
     </form>
   );
