@@ -2,7 +2,7 @@ $small-font-size: 14px;
 $desktop-label-font-size: 15px;
 $large-font-size: 16px;
 $font-family-base:'Lato', sans-serif;
-$input-spacing: 15px;
+$input-spacing: 26px;
 
 .main {
   height: 100vh;
@@ -37,6 +37,7 @@ $input-spacing: 15px;
   border: 2px solid #a7a7a7;
   background-color: #f1f1eb;
   line-height: 20px;
+  letter-spacing: 0;
   font-size: $large-font-size;
   font-family: $font-family-base;
 }
@@ -90,11 +91,11 @@ $input-spacing: 15px;
   grid-gap: 20px;
 }
 
-.form-strabe__labels label:nth-child(1) {
+.form-strabe__labels .form__label:nth-child(1) {
   grid-column: span 2;
 }
 
-.form-strabe__labels label:nth-child(2) {
+.form-strabe__labels .form__label:nth-child(2) {
   grid-column: span 1;
 }
 
@@ -104,11 +105,11 @@ $input-spacing: 15px;
   grid-gap: 20px;
 }
 
-.form-strabe__fields input:nth-child(1) {
+.form-strabe__fields .form__input:nth-child(1) {
   grid-column: span 2;
 }
 
-.form-strabe__fields input:nth-child(2) {
+.form-strabe__fields .form__input:nth-child(2) {
   grid-column: span 1;
 }
 
@@ -124,11 +125,11 @@ $input-spacing: 15px;
   grid-gap: 20px;
 }
 
-.form-plz__labels label:nth-child(1) {
+.form-plz__labels .form__label:nth-child(1) {
   grid-column: span 1;
 }
 
-.form-plz__labels label:nth-child(2) {
+.form-plz__labels .form__label:nth-child(2) {
   grid-column: span 2;
 }
 
@@ -138,18 +139,18 @@ $input-spacing: 15px;
   grid-gap: 20px;
 }
 
-.form-plz__fields input:nth-child(1) {
+.form-plz__fields .form__input:nth-child(1) {
   grid-column: span 1;
 }
 
-.form-plz__fields input:nth-child(2) {
+.form-plz__fields .form__input:nth-child(2) {
   grid-column: span 2;
 }
 
 .form-errorMessage {
   color: red;
   font-size: $small-font-size;
-  margin-bottom: 10px;
+  margin-top: 5px;
   font-family: $font-family-base;
 }
 
@@ -205,7 +206,7 @@ $input-spacing: 15px;
 }
 
 /* Hide the browser's default radio button */
-.form__container input {
+.form__container .form__radio {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -223,7 +224,7 @@ $input-spacing: 15px;
   border: 1px solid #a7a7a7;
 }
 
-.form__container input:checked ~ .form__checkMark {
+.form__container .form__radio:checked ~ .form__checkMark {
   background-color: #f1f1eb;
 }
 
@@ -233,7 +234,7 @@ $input-spacing: 15px;
   display: none;
 }
 
-.form__container input:checked ~ .form__checkMark:after {
+.form__container .form__radio:checked ~ .form__checkMark:after {
   display: block;
 }
 
@@ -259,7 +260,7 @@ $input-spacing: 15px;
     font-size: $desktop-label-font-size;
   }
   .grid-checkbox {
-    grid-template-columns: 25% 35% 35%;
+    grid-template-columns: 123px 123px 125px;
   }
 
   .form-vorname {
@@ -300,8 +301,8 @@ $input-spacing: 15px;
   }
 
   .form-errorMessage {
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 3fr;
   }
 
   .form-geburtsdatum__col {
@@ -325,6 +326,10 @@ $input-spacing: 15px;
   .form {
     width: 600px;
   }
+  .grid-checkbox {
+    grid-template-columns: 150px 145px 125px;
+  }
+
 
   .form__label {
     padding-right: 20px;

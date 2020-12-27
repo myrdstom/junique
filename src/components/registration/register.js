@@ -23,16 +23,16 @@ const Register = (props) => {
 
   return (
     <form className="form" noValidate onSubmit={onSubmit}>
-      <div className="grid grid-checkbox">
+      <div className="grid-checkbox">
         <label className="form__label ">Anrede* </label>
         <label className="form__container">
           Herr
-          <input type="radio" name="radio" />
+          <input className="form__radio" type="radio" name="radio" />
           <span className="form__checkMark" />
         </label>
         <label className="form__container">
           Frau
-          <input type="radio" name="radio" />
+          <input className="form__radio" type="radio" name="radio" />
           <span className="form__checkMark" />
         </label>
       </div>
@@ -47,13 +47,14 @@ const Register = (props) => {
           onBlur={onBlur}
           placeholder="Vorname"
         />
+        <span />
+        {errors.vornameError ? (
+            <div className="form-errorMessage">
+              {" "}
+              <span>{errors.vornameError}</span>
+            </div>
+        ) : null}
       </div>
-      {errors.vornameError ? (
-        <div className="form-errorMessage">
-          {" "}
-          <span /> <span>{errors.vornameError}</span>
-        </div>
-      ) : null}
       <div className="form-nachname">
         <label className="form__label">Nachname*</label>
         <input
@@ -65,13 +66,14 @@ const Register = (props) => {
           onBlur={onBlur}
           placeholder="Nachname"
         />
+        <span />
+        {errors.nachnameError ? (
+            <div className="form-errorMessage">
+              {" "}
+              <span>{errors.nachnameError}</span>
+            </div>
+        ) : null}
       </div>
-      {errors.nachnameError ? (
-        <div className="form-errorMessage">
-          {" "}
-          <span /> <span>{errors.nachnameError}</span>
-        </div>
-      ) : null}
       <div className="form-geburtsdatum">
         <label className="form__label">Geburtsdatum*</label>
         <div className="form-geburtsdatum__col">
@@ -103,13 +105,14 @@ const Register = (props) => {
             placeholder="JJJJ"
           />
         </div>
+        <span />
+        {errors.geburtsdatumError ? (
+            <div className="form-errorMessage">
+              {" "}
+               <span>{errors.geburtsdatumError}</span>
+            </div>
+        ) : null}
       </div>
-      {errors.geburtsdatumError ? (
-        <div className="form-errorMessage">
-          {" "}
-          <span /> <span>{errors.geburtsdatumError}</span>
-        </div>
-      ) : null}
       <div className="form-strabe">
         <div className="form-strabe__labels">
           <label className="form__label">{strabeLabel}</label>
@@ -135,13 +138,14 @@ const Register = (props) => {
             placeholder="Nr"
           />
         </div>
+        <span/>
+        {errors.strabeError ? (
+            <div className="form-errorMessage">
+              {" "}
+              <span>{errors.strabeError}</span>
+            </div>
+        ) : null}
       </div>
-      {errors.strabeError ? (
-        <div className="form-errorMessage">
-          {" "}
-          <span /> <span>{errors.strabeError}</span>
-        </div>
-      ) : null}
       <div className="form-plz">
         <div className="form-plz__labels">
           <label className="form__label">{plzLabel}</label>
@@ -167,13 +171,15 @@ const Register = (props) => {
             placeholder="Ort"
           />
         </div>
+        <span/>
+        {errors.plzError ? (
+            <div className="form-errorMessage">
+              {" "}
+              <span>{errors.plzError}</span>
+            </div>
+        ) : null}
+
       </div>
-      {errors.plzError ? (
-        <div className="form-errorMessage">
-          {" "}
-          <span /> <span>{errors.plzError}</span>
-        </div>
-      ) : null}
       <div className="form__button">
         <span className="form__span" />
         <button className="form__submit" type="submit">Create Account</button>
