@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Register from "./register";
 import "./registration.styles.scss";
-import {initialErrorState} from "../../utils/errorState";
+import {useInput} from "../../utils/registrationUtils";
 
 const RegisterView = () => {
-  const [user, setUser] = useState({
-    checked: false,
-    vorname: "",
-    nachname: "",
-    tag: "",
-    monat: "",
-    jahr: "",
-    strabe: "",
-    nr: "",
-    plz: "",
-    ort: "",
-  });
+
+  const [user, bind, errors] = useInput();
+
 
   const [strabeLabel, setStrabeLabel] = useState("");
   const [nrLabel, setNrLabel] = useState("");
@@ -51,104 +42,23 @@ const RegisterView = () => {
     });
   }, []);
 
-  const [errors, setErrors] = useState({
-    vornameError: "",
-    nachnameError: "",
-    geburtsdatumError: "",
-    strabeError: "",
-    plzError: "",
-  });
 
-  const {
-    checked,
-    vorname,
-    nachname,
-    tag,
-    monat,
-    jahr,
-    strabe,
-    nr,
-    plz,
-    ort,
-  } = user;
-
-  const validate = () => {
-    let vornameError = "";
-    let nachnameError = "";
-    let geburtsdatumError = "";
-    let strabeError = "";
-    let plzError = "";
-    if (!vorname) {
-      vornameError = "Vorname erforderlich";
-    }
-    if (!nachname) {
-      nachnameError = "Nachname erforderlich";
-    }
-    if (!tag) {
-      geburtsdatumError = "ungültiges Geburtsdatum";
-    }
-    if (!strabe) {
-      strabeError = "straße erforderlich";
-    }
-    if (!plz) {
-      plzError = "postleitzahl erforderlich";
-    }
-    if (!monat) {
-      geburtsdatumError = "ungültiges Geburtsdatum";
-    }
-
-    if (
-      vorname.length < 2 ||
-      nachname.length < 2 ||
-      tag.length < 1 ||
-      strabe.length < 2 ||
-      plz.length < 2 ||
-      monat.length < 2
-    ) {
-      setErrors({
-        ...errors,
-        vornameError,
-        nachnameError,
-        strabeError,
-        geburtsdatumError,
-        plzError,
-      });
-      return false;
-    }
-
-    return true;
-  };
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setUser({
-      ...user,
-      [e.target.name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const isValid = validate();
-    if (isValid) {
-      setErrors(initialErrorState);
-    }
-  };
 
   return (
     <div className="main">
       <Register
-        checked={checked}
-        vorname={vorname}
-        onChange={handleChange}
-        nachname={nachname}
-        tag={tag}
-        monat={monat}
-        jahr={jahr}
-        strabe={strabe}
-        nr={nr}
-        plz={plz}
-        ort={ort}
-        onSubmit={handleSubmit}
+        checked={user.checked}
+        vorname={user.vorname}
+        onChange={bind.handleChange}
+        nachname={user.nachname}
+        tag={user.tag}
+        monat={user.monat}
+        jahr={user.jahr}
+        strabe={user.strabe}
+        nr={user.nr}
+        plz={user.plz}
+        ort={user.ort}
+        onSubmit={bind.handleSubmit}
         errors={errors}
         strabeLabel={strabeLabel}
         nrLabel={nrLabel}
